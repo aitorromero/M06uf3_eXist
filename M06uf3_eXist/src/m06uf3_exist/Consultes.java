@@ -218,5 +218,27 @@ public class Consultes {
             System.out.println(ex.getMessage());
         }
     }
+    
+    public void afegirAtributPlanta(String atributo, String valor) {
+        try {
+            xqe = con.createExpression();
+            String xq = "update insert attribute " + atributo + " {'" + valor + "'} into doc('/m06_uf3/plantes.xml')//PLANT";
+            xqe.executeCommand(xq);
+        } catch (XQException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+        public void afegirEtiquetaPlanta(String etiqueta, String valor, String zona) {
+        try {
+            xqe = con.createExpression();
+            String xq = "for $b in doc ('/m06_uf3/plantes.xml')//PLANT where every $a in $b/ZONE satisfies ($a='" + zona + "')"
+                    + "return update insert <" + etiqueta.toUpperCase() + "> {'" + valor + "'} </" + etiqueta.toUpperCase() + "> into $b";
+            //System.out.println(xq);
+            xqe.executeCommand(xq);
+        } catch (XQException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 
 }

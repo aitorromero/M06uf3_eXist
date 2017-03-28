@@ -18,6 +18,11 @@ public class MainConsultes {
         }
         */
         //System.out.println(cons.cercarPlantaPerNom("Bloodroot").getTextContent());
+        
+        //cons.afegirPlanta("Plantacio", "Plantacino Erectus", "Sitios", "Mu oscuro, illo", "Mu caro", "A todas horas");
+        
+        //cons.afegirAtributPlanta("Atributillo", "Divino");
+        cons.afegirEtiquetaPlanta("EtiquetaComun","Comun", "4");
     }
 
 }
