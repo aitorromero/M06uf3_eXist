@@ -218,7 +218,7 @@ public class Consultes {
             System.out.println(ex.getMessage());
         }
     }
-    
+
     public void afegirAtributPlanta(String atributo, String valor) {
         try {
             xqe = con.createExpression();
@@ -228,8 +228,8 @@ public class Consultes {
             System.out.println(ex.getMessage());
         }
     }
-    
-        public void afegirEtiquetaPlanta(String etiqueta, String valor, String zona) {
+
+    public void afegirEtiquetaPlanta(String etiqueta, String valor, String zona) {
         try {
             xqe = con.createExpression();
             String xq = "for $b in doc ('/m06_uf3/plantes.xml')//PLANT where every $a in $b/ZONE satisfies ($a='" + zona + "')"
@@ -239,6 +239,25 @@ public class Consultes {
         } catch (XQException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+    
+    public List<Node> obtenirPlantesPerPreus(String preuMin, String preuMas) {
+        List<Node> plantes = new ArrayList<>();
+        try {
+            xqe = con.createExpression();
+            /*String xq = "for $b in doc ('/m06_uf3/plantes.xml')//PLANT  return $b";*/
+            String xq = "for $b in doc ('/plantas/plantes.xml')//PLANT "
+                    + "where every $a in $b/ZONE satisfies($a >= '"+ preuMin + "' and $a <= '" + preuMas + "') return $b";
+
+
+            XQResultSequence rs = xqe.executeQuery(xq);
+            while (rs.next()) {
+                plantes.add(rs.getItem().getNode());
+            }
+        } catch (XQException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return plantes;
     }
 
 }

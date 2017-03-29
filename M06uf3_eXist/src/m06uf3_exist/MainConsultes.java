@@ -22,7 +22,13 @@ public class MainConsultes {
         //cons.afegirPlanta("Plantacio", "Plantacino Erectus", "Sitios", "Mu oscuro, illo", "Mu caro", "A todas horas");
         
         //cons.afegirAtributPlanta("Atributillo", "Divino");
-        cons.afegirEtiquetaPlanta("EtiquetaComun","Comun", "4");
+        
+        //cons.afegirEtiquetaPlanta("EtiquetaComun","Comun", "4");
+        
+        List<Node> plantes = cons.obtenirPlantesPerPreus("2", "7");
+        for (Node planta : plantes) {
+            System.out.println(planta.getTextContent());
+        }
     }
 
 }
