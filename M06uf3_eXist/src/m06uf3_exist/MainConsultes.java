@@ -25,10 +25,13 @@ public class MainConsultes {
         
         //cons.afegirEtiquetaPlanta("EtiquetaComun","Comun", "4");
         
+        /*
         List<Node> plantes = cons.obtenirPlantesPerPreus("2", "7");
         for (Node planta : plantes) {
             System.out.println(planta.getTextContent());
         }
+        */
+        cons.modificarPreuDunNom("Bloodroot", "314159265");
     }
 
 }
