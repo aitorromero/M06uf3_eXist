@@ -240,15 +240,14 @@ public class Consultes {
             System.out.println(ex.getMessage());
         }
     }
-    
+
     public List<Node> obtenirPlantesPerPreus(String preuMin, String preuMas) {
         List<Node> plantes = new ArrayList<>();
         try {
             xqe = con.createExpression();
             /*String xq = "for $b in doc ('/m06_uf3/plantes.xml')//PLANT  return $b";*/
             String xq = "for $b in doc ('/plantas/plantes.xml')//PLANT "
-                    + "where every $a in $b/PRICE satisfies($a >= '"+ preuMin + "' and $a <= '" + preuMas + "') return $b";
-
+                    + "where every $a in $b/PRICE satisfies($a >= '" + preuMin + "' and $a <= '" + preuMas + "') return $b";
 
             XQResultSequence rs = xqe.executeQuery(xq);
             while (rs.next()) {
@@ -259,15 +258,14 @@ public class Consultes {
         }
         return plantes;
     }
-    
+
     public List<Node> obtenirPlantesPerZona(String zona) {
         List<Node> plantes = new ArrayList<>();
         try {
             xqe = con.createExpression();
             /*String xq = "for $b in doc ('/m06_uf3/plantes.xml')//PLANT  return $b";*/
             String xq = "for $b in doc ('/plantas/plantes.xml')//PLANT "
-                    + "where every $a in $b/ZONE satisfies($a = '"+ zona + "') return $b";
-
+                    + "where every $a in $b/ZONE satisfies($a = '" + zona + "') return $b";
 
             XQResultSequence rs = xqe.executeQuery(xq);
             while (rs.next()) {
@@ -278,12 +276,25 @@ public class Consultes {
         }
         return plantes;
     }
-    
+
     public void modificarPreuDunNom(String nom, String precio) {
         try {
             xqe = con.createExpression();
-            String xq = "for $b in doc ('/plantas/plantes.xml')//PLANT "
-                    + "where every $a in $b/COMMON satisfies($a = '"+ nom +"') return update value $b/PRICE with '"+ precio +"'";
+            String xq = "for $b in doc ('/m06_uf3/plantes.xml')//PLANT "
+                    + "where every $a in $b/COMMON satisfies($a = '" + nom + "') return update value $b/PRICE with '" + precio + "'";
+            xqe.executeCommand(xq);
+        } catch (XQException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public void eliminarPlanta(String nom) {
+
+        try {
+            xqe = con.createExpression();
+            /*String xq = "update delete doc('/m06_uf3/plantes.xml')//PLANT/COMMON[@codigo='" + codigo + "']";*/
+            String xq = "for $b in doc('/plantas/plantes.xml')//PLANT where every $a in $b/COMMON satisfies($a = '" + nom + "') return update delete $b";
+
             xqe.executeCommand(xq);
         } catch (XQException ex) {
             System.out.println(ex.getMessage());

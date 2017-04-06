@@ -31,7 +31,8 @@ public class MainConsultes {
             System.out.println(planta.getTextContent());
         }
         */
-        cons.modificarPreuDunNom("Bloodroot", "314159265");
+        
+        //cons.modificarPreuDunNom("Bloodroot", "314159265");
     }
 
 }
