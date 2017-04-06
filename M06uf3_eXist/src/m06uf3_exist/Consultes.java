@@ -136,6 +136,10 @@ public class Consultes {
         }
     }
 
+    /**
+     * Declaramos un nuevo String con la traduccion de la etiquetas. Dentro
+     * de un try cambiamos cada una de estas.
+     */
     void traducirEtiqueta() {
         String[] traduccionEtiqueta = {"NOMBRE_COMUN", "NOMBRE_CIENTIFICO", "ZONA",
             "LUMINOSIDAD", "PRECIO", "DISPONIBILIDAD"};
@@ -152,6 +156,9 @@ public class Consultes {
         }
     }
 
+    /**
+     * Accedemos a cada uno de los precios y eliminamos el simbolo de dollar.
+     */
     void quitarSimboloDollar() {
         try {
             xqe = con.createExpression();
@@ -167,6 +174,11 @@ public class Consultes {
         }
     }
 
+    /**
+     * Obtenemos todas la plantas y las almacenamos en un arrayList de nodos, que
+     * despues recorreremos para mostrar.
+     * @return 
+     */
     public List<Node> obtenirPlantes() {
         List<Node> plantes = new ArrayList<>();
         try {
@@ -183,6 +195,12 @@ public class Consultes {
         return plantes;
     }
 
+    /**
+     * Usando satisfies en la consulta buscamos el valor de la etiqueta COMMON
+     * con el pasado por parametro.
+     * @param nom
+     * @return 
+     */
     public Node cercarPlantaPerNom(String nom) {
         Node libro = null;
         try {
@@ -199,6 +217,16 @@ public class Consultes {
         return libro;
     }
 
+    /**
+     * Añadimos una nueva planta haciendo un insert de toda la estructura
+     * con los vslores que deseamos.
+     * @param nombreComun
+     * @param nombreCientifico
+     * @param zona
+     * @param luminosidad
+     * @param precio
+     * @param disponibilidad 
+     */
     public void afegirPlanta(String nombreComun, String nombreCientifico, String zona, String luminosidad, String precio, String disponibilidad) {
         try {
             xqe = con.createExpression();
@@ -219,6 +247,11 @@ public class Consultes {
         }
     }
 
+    /**
+     * Añadimos un atributo con un valor a la primera planta.
+     * @param atributo
+     * @param valor 
+     */
     public void afegirAtributPlanta(String atributo, String valor) {
         try {
             xqe = con.createExpression();
@@ -229,6 +262,14 @@ public class Consultes {
         }
     }
 
+    /**
+     * En la planta que coincida con el nombre que recibimos por parametro
+     * añadimos un valor, tambien recibido por parametro. Mediante la estructura
+     * que podemos ver abajo.
+     * @param etiqueta
+     * @param valor
+     * @param zona 
+     */
     public void afegirEtiquetaPlanta(String etiqueta, String valor, String zona) {
         try {
             xqe = con.createExpression();
@@ -241,6 +282,13 @@ public class Consultes {
         }
     }
 
+    /**
+     * Obtenemos todas las plantas con un precio entre los dos que hemos introducido
+     * por parametro.
+     * @param preuMin
+     * @param preuMas
+     * @return 
+     */
     public List<Node> obtenirPlantesPerPreus(String preuMin, String preuMas) {
         List<Node> plantes = new ArrayList<>();
         try {
@@ -259,6 +307,12 @@ public class Consultes {
         return plantes;
     }
 
+    /**
+     * Obtenemos todas las plantas que su zona coincida con la que recibimos por
+     * parametro
+     * @param zona
+     * @return 
+     */
     public List<Node> obtenirPlantesPerZona(String zona) {
         List<Node> plantes = new ArrayList<>();
         try {
@@ -277,6 +331,12 @@ public class Consultes {
         return plantes;
     }
 
+    /**
+     * El elemento que coincida con el nombre recibido por parametro es modificado
+     * con el precio tambien recibido por parametro.
+     * @param nom
+     * @param precio 
+     */
     public void modificarPreuDunNom(String nom, String precio) {
         try {
             xqe = con.createExpression();
@@ -288,6 +348,11 @@ public class Consultes {
         }
     }
     
+    /**
+     * Eliminamos la planta que tenga el mismo nombre que el que recibimos por
+     * parametro.
+     * @param nom 
+     */
     public void eliminarPlanta(String nom) {
 
         try {
